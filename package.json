@@ -1,0 +1,8 @@
+{
+    "name": "usmbro",
+    "version": "0.0.1",
+    "description": "Première version de usmbro API",
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
