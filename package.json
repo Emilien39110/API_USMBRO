@@ -1,8 +1,14 @@
 {
-    "name": "usmbro",
-    "version": "0.0.1",
-    "description": "Première version de usmbro API",
-    "dependencies": {
-        "express": "^4.18.2"
-    }
+  "name": "usmbro",
+  "version": "1.0.0",
+  "description": "API pour l'application usmbro, qui permet de localiser ses amis sur le campus du Bourget du Lac",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emilien BOITOUZET, Andrien MONTMAYEUR",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3"
+  }
 }
