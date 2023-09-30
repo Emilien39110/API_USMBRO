@@ -11,6 +11,7 @@ const client = new MongoClient(url);
 
 module.exports = router;
 
+//EVENTUELLEMENT VIRER L'ID DES ROUTES GET S'IL NE SERT A RIEN
 
 //Création d'un utilisateur
 router.post('/users', async (req, res) => {
@@ -27,6 +28,8 @@ router.post('/users', async (req, res) => {
         res.status(201).json(user);
     }catch (err) {
         res.status(400).json({ message: err.message });
+    }finally{
+        client.close();
     }
 });
 
@@ -41,9 +44,11 @@ router.get('/users', async (req, res) => {
         const result = await collection.find().toArray();
         console.log('Found the following records:');
         console.log(result);        
-        res.status(200).json(users);
+        res.status(200).json(result);
     }catch (err) {
         res.status(400).json({ message: err.message });
+    }finally{
+        client.close();
     }
 });
 
