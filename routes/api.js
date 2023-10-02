@@ -52,15 +52,57 @@ router.get('/users', async (req, res) => {
     }
 });
 
-// //Lecture d'un utilisateur
-// router.get('/users/:id',async(req,res)=>{
-//     try{
-//         const user = await User.findById(req.params.id);
-//         res.status(200).json(user);
-//     }catch(err){
-//         res.status(400).json({message:err.message});
-//     }
-// });
+//Lecture d'un utilisateur
+router.get('/user/prenom/:prenom', async (req, res) => {
+    try {
+        await client.connect()
+        console.log("Connected correctly to server");
+        const db = client.db(dbName);
+        const collection = db.collection('users');
+        const result = await collection.find({prenom: req.params.prenom}).toArray();
+        console.log('Found the following records:');
+        console.log(result);
+        res.status(200).json(result);
+    }catch (err) {
+        res.status(400).json({ message: err.message });
+    }finally{
+        client.close();
+    }
+});
+
+router.get('/user/nom/:nom', async (req, res) => {
+    try {
+        await client.connect()
+        console.log("Connected correctly to server");
+        const db = client.db(dbName);
+        const collection = db.collection('users');
+        const result = await collection.find({nom: req.params.nom}).toArray();
+        console.log('Found the following records:');
+        console.log(result);
+        res.status(200).json(result);
+    }catch (err) {
+        res.status(400).json({ message: err.message });
+    }finally{
+        client.close();
+    }
+});
+
+router.get('/user/filiere/:filiere', async (req, res) => {
+    try {
+        await client.connect()
+        console.log("Connected correctly to server");
+        const db = client.db(dbName);
+        const collection = db.collection('users');
+        const result = await collection.find({filiere: req.params.filiere}).toArray();
+        console.log('Found the following records:');
+        console.log(result);
+        res.status(200).json(result);
+    }catch (err) {
+        res.status(400).json({ message: err.message });
+    }finally{
+        client.close();
+    }
+});
 
 // //Modification d'un utilisateur
 // router.put('/users/:id',async(req,res)=>{
