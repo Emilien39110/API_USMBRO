@@ -14,18 +14,19 @@ module.exports = router;
 //EVENTUELLEMENT VIRER L'ID DES ROUTES GET S'IL NE SERT A RIEN
 
 //Création d'un utilisateur
-router.post('/users', async (req, res) => {
+router.post('/users/add', async (req, res) => {
     try {
         await client.connect();
         console.log("Connected correctly to server");
         const db = client.db(dbName);
         const collection = db.collection('users');
-        const newUser = {nom: req.body.nom, prenom: req.body.prenom, filiere: req.body.filiere};
+        //console.log(req.url.nom, req.query.prenom, req.body.filiere);
+        const newUser = {nom: req.query.nom, prenom: req.query.prenom, filiere: req.query.filiere};
         const result = await collection.insertOne(newUser);
         console.log('New user created with the following id:', result);
         //const user = new User(req.body);
         //await user.save();
-        res.status(201).json(user);
+        res.status(201).json(result);
     }catch (err) {
         res.status(400).json({ message: err.message });
     }finally{
