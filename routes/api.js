@@ -14,14 +14,15 @@ module.exports = router;
 //EVENTUELLEMENT VIRER L'ID DES ROUTES GET S'IL NE SERT A RIEN
 
 //Création d'un utilisateur
-router.post('/users/add', async (req, res) => {
+router.post('/users/', async (req, res) => {
     try {
         await client.connect();
         console.log("Connected correctly to server");
-        const db = client.db(dbName);
-        const collection = db.collection('users');
+        let db = client.db(dbName);
+        let collection = await db.collection('users');
         //console.log(req.url.nom, req.query.prenom, req.body.filiere);
-        const newUser = {nom: req.query.nom, prenom: req.query.prenom, filiere: req.query.filiere};
+        //console.log(req.body);
+        let newUser = req.body;
         const result = await collection.insertOne(newUser);
         console.log('New user created with the following id:', result);
         //const user = new User(req.body);
@@ -105,11 +106,14 @@ router.get('/user/filiere/:filiere', async (req, res) => {
     }
 });
 
-// //Modification d'un utilisateur
-// router.put('/users/:id',async(req,res)=>{
+//Modification d'un utilisateur
+// router.put('/users/delete/:prenom',async(req,res)=>{
 //     try{
-//         const user = await User.findByIdAndUpdate(req.params.id,req.body);
-//         res.json(user);
+//         await client.connect()
+//         const db = client.db(dbName);
+//         const collection = db.collection('users');
+//         const result = await collection.findByIdAndUpdate(req.params.prenom,req.body);
+//         res.json(result);
 //     }catch(err){
 //         res.status(400).json({message:err.message});
 //     }
