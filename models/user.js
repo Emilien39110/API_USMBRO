@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   nom: String,
   prenom: String,
   filiere: String,
+  token: String,
 });
 
 module.exports = mongoose.model('User', userSchema);
