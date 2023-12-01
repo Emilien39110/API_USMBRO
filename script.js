@@ -14,7 +14,7 @@ async function addData() {
     const db = client.db(dbName);
     const collection = db.collection('users');
 
-    const newUser = {nom: "Emilien", prenom: "BOITOUZET", filiere: "CMI-INFO"};
+    const newUser = {nom: "Emilien", prenom: "BOITOUZET", filiere: "CMI-INFO", token: "123456789"};
     const result = await collection.insertOne(newUser);
     console.log('New user created with the following id:', result);
 
